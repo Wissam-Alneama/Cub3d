@@ -1,0 +1,5 @@
+NO ./textures/n.xpm
+SO ./textures/s.xpm
+WE ./textures/w.xpm
+EA ./textures/e.xpm
+F 1,2,3
