@@ -27,6 +27,29 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
+static void	free_mlx(t_game *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (g->tex[i].ptr)
+			mlx_destroy_image(g->mlx, g->tex[i].ptr);
+		i++;
+	}
+	if (g->frame.ptr)
+		mlx_destroy_image(g->mlx, g->frame.ptr);
+	if (g->win)
+		mlx_destroy_window(g->mlx, g->win);
+	if (g->mlx)
+	{
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+	}
+	g->mlx = NULL;
+}
+
 void	free_game(t_game *g)
 {
 	int	i;
@@ -41,6 +64,7 @@ void	free_game(t_game *g)
 	free_tab(g->lines);
 	g->map.grid = NULL;
 	g->lines = NULL;
+	free_mlx(g);
 }
 
 void	error_exit(t_game *g, char *msg)

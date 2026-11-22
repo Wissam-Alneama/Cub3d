@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walneama <walneama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maryaada <maryaada@student.42abui.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 07:31:29 by maryaada          #+#    #+#             */
-/*   Updated: 2026/11/17 09:06:25 by walneama         ###   ########.fr       */
+/*   Updated: 2026/11/22 19:43:35 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # include "minilibx-linux/mlx.h" //miss me? 
 # include <fcntl.h>
 # include "libft.h"
+
+# define WIN_W 600
+# define WIN_H 600
+# define KEY_ESC 65307
+
 
 typedef enum e_elem
 {
@@ -41,6 +46,17 @@ typedef struct s_config
 	int		ceil_color;
 	int		seen[ID_COUNT];
 }	t_config;
+
+typedef struct s_img
+{
+	void	*ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
 
 typedef struct s_map
 {
@@ -67,6 +83,8 @@ typedef struct s_game
 	t_config	cfg;
 	t_map		map;
 	t_player	player;
+	t_img		frame;
+	t_img		tex[4];
 	char		**lines;
 	void		*mlx;
 	void		*win;
@@ -93,5 +111,12 @@ void	scan_map(t_game *g, int start, int last);
 void	build_grid(t_game *g, int start);
 void	validate_map(t_game *g);
 
+// window init
+void	init_window(t_game *g);
+void	setup_hooks(t_game *g);
+void	put_pixel(t_img *img, int x, int y, int color);
+int		render(t_game *g);
+
 void	print_game_info(t_game *g);
+
 #endif

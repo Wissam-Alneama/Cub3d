@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walneama <walneama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maryaada <maryaada@student.42abui.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 07:31:34 by maryaada          #+#    #+#             */
-/*   Updated: 2026/11/17 09:06:02 by walneama         ###   ########.fr       */
+/*   Updated: 2026/11/22 19:48:52 by maryaada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int	main(int argc, char **argv)
 	ft_bzero(&g, sizeof(t_game));
 	parse_file(&g, argv[1]);
 	print_game_info(&g);
+	init_window(&g);
+	setup_hooks(&g);
+	mlx_loop(g.mlx);
 	free_game(&g);
 	return (0);
 }
