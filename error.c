@@ -58,6 +58,7 @@ void	free_game(t_game *g)
 	while (i < 4)
 	{
 		free(g->cfg.tex_path[i]);
+		g->cfg.tex_path[i] = NULL;
 		i++;
 	}
 	free_tab(g->map.grid);
